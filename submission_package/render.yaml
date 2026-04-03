@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: doc-analyzer
+    env: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: ANALYSIS_PROVIDER
+        value: auto
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
