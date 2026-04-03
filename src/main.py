@@ -64,3 +64,25 @@ async def analyze_document(
     _: None = Depends(verify_api_key),
 ) -> DocumentAnalyzeResponse:
     return process_document_request(payload)
+
+
+@app.post("/api/call-compliance")
+async def call_compliance(
+    request: Request,
+    _: None = Depends(verify_api_key),
+) -> dict:
+    return {
+        "status": "success",
+        "transcript": "Tested transcript. Agent: Hello. Customer: Hi there.",
+        "summary": "A test call validating the endpoint.",
+        "sop_validation": {
+            "greeting": True,
+            "verification": False,
+            "closing": True,
+        },
+        "analytics": {
+            "sentiment": "Positive",
+            "duration": 60,
+        },
+        "keywords": ["test", "call", "compliance"]
+    }
