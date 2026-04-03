@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Extraction API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+
+      <main class="layout">
+        <section class="hero card">
+          <div class="eyebrow">Track 2 Submission Demo</div>
+          <h1>AI-Powered Document Analysis & Extraction</h1>
+          <p class="hero-copy">
+            Upload a PDF, DOCX, or image and get structured summary, entity extraction,
+            and sentiment analysis from the same API judges will evaluate.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-label">Formats</span>
+              <strong>PDF, DOCX, Image</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Outputs</span>
+              <strong>Summary, Entities, Sentiment</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Auth</span>
+              <strong>`x-api-key` Protected</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <section class="card control-panel">
+            <div class="section-heading">
+              <div>
+                <div class="eyebrow">Interactive Demo</div>
+                <h2>Analyze a document</h2>
+              </div>
+              <a class="ghost-link" href="/docs" target="_blank" rel="noreferrer">Open API Docs</a>
+            </div>
+
+            <form id="analyze-form" class="form-grid">
+              <label class="field">
+                <span>API Key</span>
+                <input
+                  id="api-key"
+                  name="api-key"
+                  type="password"
+                  placeholder="sk_track2_987654321"
+                  autocomplete="off"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>File Type</span>
+                <select id="file-type" name="file-type">
+                  <option value="pdf">PDF</option>
+                  <option value="docx">DOCX</option>
+                  <option value="image">Image</option>
+                </select>
+              </label>
+
+              <label class="field field-wide upload-field">
+                <span>Document</span>
+                <div class="upload-box" id="upload-box">
+                  <input
+                    id="file-input"
+                    name="file-input"
+                    type="file"
+                    accept=".pdf,.docx,.png,.jpg,.jpeg,.tiff,.bmp,.webp"
+                    required
+                  />
+                  <div class="upload-copy">
+                    <strong>Drop a file here or browse</strong>
+                    <p>Best results come from native PDF/DOCX or OCR-ready images.</p>
+                  </div>
+                </div>
+              </label>
+
+              <div class="actions">
+                <button id="submit-button" type="submit">Run Analysis</button>
+                <span id="status-pill" class="status-pill idle">Waiting for input</span>
+              </div>
+            </form>
+
+            <div class="tips">
+              <div class="tip">
+                <span class="tip-title">Judge flow</span>
+                <p>The same backend route powers this UI and the hackathon API submission.</p>
+              </div>
+              <div class="tip">
+                <span class="tip-title">OCR note</span>
+                <p>Install Tesseract on the host if you want image and scanned PDF support.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="results-column">
+            <section class="card result-card summary-card">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Analysis Output</div>
+                  <h2>Summary</h2>
+                </div>
+                <span id="sentiment-badge" class="sentiment-badge neutral">Neutral</span>
+              </div>
+              <p id="summary-output" class="summary-output">
+                Your generated summary will appear here after a successful request.
+              </p>
+            </section>
+
+            <section class="entity-grid">
+              <article class="card entity-card">
+                <h3>Names</h3>
+                <ul id="names-list" class="entity-list">
+                  <li>No data yet</li>
+                </ul>
+              </article>
+              <article class="card entity-card">
+                <h3>Dates</h3>
+                <ul id="dates-list" class="entity-list">
+                  <li>No data yet</li>
+                </ul>
+              </article>
+              <article class="card entity-card">
+                <h3>Organizations</h3>
+                <ul id="organizations-list" class="entity-list">
+                  <li>No data yet</li>
+                </ul>
+              </article>
+              <article class="card entity-card">
+                <h3>Amounts</h3>
+                <ul id="amounts-list" class="entity-list">
+                  <li>No data yet</li>
+                </ul>
+              </article>
+            </section>
+
+            <section class="card raw-card">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Response Payload</div>
+                  <h2>Raw JSON</h2>
+                </div>
+                <button id="copy-json" class="secondary-button" type="button">Copy JSON</button>
+              </div>
+              <pre id="json-output" class="json-output">{
+  "status": "idle"
+}</pre>
+            </section>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
