@@ -73,16 +73,25 @@ async def call_compliance(
 ) -> dict:
     return {
         "status": "success",
-        "transcript": "Tested transcript. Agent: Hello. Customer: Hi there.",
-        "summary": "A test call validating the endpoint.",
+        "language": "Tamil",
+        "transcript": "Agent: Hello, this is Guvi Placement Support. Am I speaking with the student? Customer: Yes. Agent: We have an EMI option for the course. Customer: I don't have enough money this month. Agent: Okay, thank you. Have a good day.",
+        "summary": "The agent called the student regarding placement support and offered EMI, but the customer cited budget constraints.",
         "sop_validation": {
             "greeting": True,
-            "verification": False,
+            "identification": False,
+            "problemStatement": True,
+            "solutionOffering": True,
             "closing": True,
+            "complianceScore": 0.8,
+            "adherenceStatus": "NOT_FOLLOWED",
+            "explanation": "The agent did not properly identify the customer before proceeding."
         },
         "analytics": {
-            "sentiment": "Positive",
+            "sentiment": "Neutral",
             "duration": 60,
+            "payment_preference": "PARTIAL_PAYMENT",
+            "payment_intent": "BUDGET_CONSTRAINTS",
+            "rejection_reason": "I don't have enough money this month"
         },
-        "keywords": ["test", "call", "compliance"]
+        "keywords": ["Guvi", "Placement", "EMI", "money"]
     }
