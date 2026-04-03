@@ -12,12 +12,11 @@ This project is a Track 2 submission for **AI-Powered Document Analysis & Extrac
 The system accepts one Base64-encoded document at a time and returns structured JSON with the extracted key information.
 
 ## Submission Links
-Update these before final submission:
 
-- Live URL: `ADD_DEPLOYED_URL_HERE`
-- GitHub Repository: `ADD_GITHUB_REPO_URL_HERE`
-- Demo Video: `ADD_YOUTUBE_OR_DRIVE_LINK_HERE`
-- Presentation Deck (Optional): `ADD_SLIDES_LINK_HERE`
+- Live URL: `https://doc-analyzer-85do.onrender.com`
+- GitHub Repository: `https://github.com/Bavanapg13/doc-analyzer`
+- Demo Video: `[ADD_YOUTUBE_OR_DRIVE_LINK_HERE]` (You must record a 2-5 min screen recording and paste link here)
+- Presentation Deck (Optional): `[ADD_SLIDES_LINK_HERE]`
 
 ## Features
 - PDF text extraction with page-order preservation
@@ -63,14 +62,10 @@ The application uses a layered backend:
 - Deployment: Docker, Render-compatible config
 
 ## AI Tools Used
-Document all AI assistance here as required by the hackathon.
 
-Currently documented for this repository:
-
-- OpenAI Codex / ChatGPT-style coding assistant used for scaffolding, refactoring, UI generation, and README drafting
-- OpenAI API integration supported inside the application for document understanding when configured
-
-If you also used GitHub Copilot, Claude, Gemini, Cursor, or any other AI tool during development, add them explicitly before submission.
+- **Google Gemini 3.1 Pro (Antigravity Agent)**: Used for environment setup, executing deployments, debugging errors, and updating the REST endpoints for mock tests.
+- **OpenAI Codex / ChatGPT-style Models**: Initially used for scaffolding the directory structure, writing heuristics logic, and drafting the README.
+- **OpenAI API**: Supported inside the application for deep document text extraction mapping and summarization.
 
 ## Project Structure
 ```text
