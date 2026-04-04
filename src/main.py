@@ -89,6 +89,11 @@ async def analyze_document_get() -> JSONResponse:
     response_model=DocumentAnalyzeResponse,
     include_in_schema=False,
 )
+@app.post(
+    "/",
+    response_model=DocumentAnalyzeResponse,
+    include_in_schema=False,
+)
 async def analyze_document(
     payload: DocumentAnalyzeRequest,
     _: None = Depends(verify_api_key),
