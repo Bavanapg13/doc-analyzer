@@ -15,7 +15,7 @@ The system accepts one Base64-encoded document at a time and returns structured 
 
 - Live URL: `https://doc-analyzer-85do.onrender.com`
 - GitHub Repository: `https://github.com/Bavanapg13/doc-analyzer`
-- Demo Video: `[ADD_YOUTUBE_OR_DRIVE_LINK_HERE]` (You must record a 2-5 min screen recording and paste link here)
+- Demo Video: `[https://youtu.be/wo-6PX3WNFA]` (You must record a 2-5 min screen recording and paste link here)
 - Presentation Deck (Optional): `[ADD_SLIDES_LINK_HERE]`
 
 ## Features
