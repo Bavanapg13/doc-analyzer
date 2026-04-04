@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -13,6 +14,14 @@ app = FastAPI(
     title="Data Extraction API",
     version="1.0.0",
     description="Track 2 AI-powered document analysis and extraction service.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -54,10 +63,31 @@ async def index() -> FileResponse:
     return FileResponse(STATIC_DIR / "index.html")
 
 
+@app.get("/api/document-analyze", include_in_schema=False)
+@app.get("/api/document-analyze/", include_in_schema=False)
+async def analyze_document_get() -> JSONResponse:
+    # Handle misconfigured GET requests to prevent 405 Method Not Allowed
+    return JSONResponse(status_code=200, content={"message": "Please use POST method to submit documents for analysis"})
+
 @app.post(
     "/api/document-analyze",
     response_model=DocumentAnalyzeResponse,
     responses={400: {"model": ErrorResponse}, 401: {"model": ErrorResponse}},
+)
+@app.post(
+    "/api/document-analyze/",
+    response_model=DocumentAnalyzeResponse,
+    include_in_schema=False,
+)
+@app.post(
+    "/analyze",
+    response_model=DocumentAnalyzeResponse,
+    include_in_schema=False,
+)
+@app.post(
+    "/upload",
+    response_model=DocumentAnalyzeResponse,
+    include_in_schema=False,
 )
 async def analyze_document(
     payload: DocumentAnalyzeRequest,
@@ -66,7 +96,13 @@ async def analyze_document(
     return process_document_request(payload)
 
 
+@app.get("/api/call-compliance", include_in_schema=False)
+@app.get("/api/call-compliance/", include_in_schema=False)
+async def call_compliance_get() -> JSONResponse:
+    return JSONResponse(status_code=200, content={"message": "Please use POST method"})
+
 @app.post("/api/call-compliance")
+@app.post("/api/call-compliance/")
 async def call_compliance(
     request: Request,
     _: None = Depends(verify_api_key),
